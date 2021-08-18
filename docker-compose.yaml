@@ -1,0 +1,26 @@
+version: "3.2"
+services:
+    stock:
+        build:
+            context: ./stock
+            dockerfile: Dockerfile
+        volumes:
+            - ./stock:/usr/src/app
+        environment:
+            - IEX_TOKEN=${IEX_TOKEN}
+        ports:
+            - "8080:8080"
+        expose:
+            - '8080'
+    http_api_gateway:
+        build:
+            context: ./http_api_gateway
+            dockerfile: Dockerfile
+        volumes:
+            - ./http_api_gateway:/usr/src/app
+        environment:
+            - IEX_TOKEN=${IEX_TOKEN}
+        ports:
+            - "8081:8080"
+        expose:
+            - '8080' 
